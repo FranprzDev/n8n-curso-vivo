@@ -1,0 +1,81 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -848,
+        -784
+      ],
+      "id": "ccebef95-ce86-4b1a-a6eb-026188c21b9d",
+      "name": "When chat message received",
+      "webhookId": "f89103ad-11d1-4b65-8928-a6657cf9d07b"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful sales assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -624,
+        -784
+      ],
+      "id": "01316df4-77b0-4137-a621-cec778d44440",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -560
+      ],
+      "id": "996d6a07-6b19-43e4-b426-d9bc67d84587",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WjrbgZowcaHhf43A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b82cbc8eb08695b02c02c1460460fa8234c0f04fd88979cc38f8b09327d27628"
+  }
+}
